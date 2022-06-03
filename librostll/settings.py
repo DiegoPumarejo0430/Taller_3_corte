@@ -77,9 +77,12 @@ WSGI_APPLICATION = 'librostll.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.Sqlite3',
-        'NAME': 'db_sqlite3',
-        
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db_libros',
+        'USER': 'root',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
