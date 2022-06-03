@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+
+    
+
+        <table class="table table success table-striped">
+            <thead>
+                <h3>ejemplares con fecha de devolucion entre (2022-05-01 y 2022-05-30)</h3>
+            <tr>
+                <th scope="col">Usuario</th>
+                <th scope="col">libro</th>
+                <th scope="col">fecha prestamo</th>
+                <th scope="col">fecha devolucion</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% if ejemplar %}
+                    {% for ejemplar in ejemplar %}
+                        <tr>
+                            <td>{{ ejemplar.user__username }}</td>
+                            <td>{{ ejemplar.ejemplares__libro__titulo }}</td>
+                            <td>{{ ejemplar.fecha_pres }}</td>
+                            <td>{{ ejemplar.fecha_dev }}</td>
+                            <td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                        <h3>No existen registros</h3>
+                {% endif %}
+            </tbody>
+        </table>
+
+{% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from apps.ejemplares.form import ejemplarForm, prestarForm
 from apps.ejemplares.models import Ejemplares, Prestar
+from django.db.models import Count
  #Create your views here.
 
 def listejemplar(request):
@@ -75,3 +76,13 @@ def prestarDelete(request, id_prestar):
        mant.delete()
        return redirect('prestar:listprestar')
     return render(request, 'prestar/prestarDelete.html', {'prestar': mant})
+
+def Consultas(request):
+    ejemplar =Prestar.objects.filter(fecha_dev__range=['2022-05-01','2022-05-30']).values('user__username', 'ejemplares__libro__titulo','fecha_pres','fecha_dev')
+    context = {'ejemplar': ejemplar}
+    return render(request, 'ejemplar/Consultas.html',context)
+
+def Consultas2(request):
+    ejemplar = Prestar.objects.values('ejemplares__libro__titulo').annotate(total=Count('ejemplares__libro__titulo'))
+    context = {'ejemplar': ejemplar}
+    return render(request, 'ejemplar/Consultas2.html',context)

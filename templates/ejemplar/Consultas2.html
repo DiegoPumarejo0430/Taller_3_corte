@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+
+    
+
+        <table class="table table success table-striped">
+            <thead>
+                <h3>numero de prestamos discriminados por libro</h3>
+            <tr>
+                <th scope="col">libro</th>
+                <th scope="col">numero de Prestamos</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% if ejemplar %}
+                    {% for ejemplar in ejemplar %}
+                        <tr>
+                            <td>{{ ejemplar.ejemplares__libro__titulo }}</td>
+                            <td>{{ ejemplar.total }}</td>
+                            <td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                        <h3>No existen registros</h3>
+                {% endif %}
+            </tbody>
+        </table>
+
+{% endblock %}

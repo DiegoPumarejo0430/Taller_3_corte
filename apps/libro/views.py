@@ -77,9 +77,5 @@ def autorDelete(request, id_autor):
        return redirect('autor:listautor')
     return render(request, 'autor/autorDelete.html', {'autor': mant})
 
-def Consultas(request):
-    Ejemplar = Libro.objects.filter(fecha__range=['2022-04-22','2022-05-10']).values('fecha', 'valorTotal', 'tipoPago')
-    context = {'Ejemplares': Ejemplar}
-    return render(request, 'ventas/Consultas.html',context)
 
 
