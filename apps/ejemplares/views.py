@@ -91,3 +91,8 @@ def Consultas3(request):
     ejemplar = Prestar.objects.values('user__username','ejemplares__libro__titulo','ejemplares__libro__numeropagina').annotate(total=Count('ejemplares__libro__titulo'))
     context = {'ejemplar': ejemplar}
     return render(request, 'ejemplar/Consultas3.html',context)
+
+def Consultas4(request):
+    ejemplar = Prestar.objects.all().values('user__username').annotate(total=Count('ejemplares__libro__titulo'))
+    context = {'ejemplar': ejemplar}
+    return render(request, 'ejemplar/Consultas4.html',context)
